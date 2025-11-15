@@ -1,0 +1,33 @@
+# 忽略 JetBrains IDE (PyCharm, IntelliJ) 的配置
+.idea/
+
+venv/
+.venv/
+env/
+.env/
+py12/
+
+# 忽略 Python 缓存和编译文件
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+
+# 忽略操作系统生成的文件
+.DS_Store
+Thumbs.db
+
+# 忽略打包和分发目录
+build/
+dist/
+*.egg-info/
+.eggs/
+
+# 忽略测试和覆盖率报告
+.pytest_cache/
+.coverage
+htmlcov/
+
+# 忽略日志文件和本地环境变量
+*.log
+.env
