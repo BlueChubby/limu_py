@@ -48,11 +48,20 @@ if __name__ == '__main__':
         download=True
     )
 
-    print(mnist_train)
-    print(len(mnist_train))
-    print(len(mnist_test))
+    train_loader = torch.utils.data.DataLoader(
+        dataset=mnist_train,
+        batch_size=16,
+        shuffle=True
+    )
 
-    print(mnist_train[0][0].shape)
+    test_loader = torch.utils.data.DataLoader(
+        dataset=mnist_test,
+        batch_size=16,
+        shuffle=True
+    )
 
+    timer = d2l.Timer()
+    for features, labels in train_loader:
+        continue
 
-
+    print(f"{timer.stop():.2f} sec")

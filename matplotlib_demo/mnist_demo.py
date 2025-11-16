@@ -44,26 +44,44 @@ labels_map = {
 train_loader = torch.utils.data.DataLoader(
     training_data,
     batch_size=64,
-    shuffle=True # 训练时一定要打乱
+    shuffle=True  # 训练时一定要打乱
 )
+
+iterator = iter(train_loader)
+features, labels = next(iterator)
+
+image_a: torch.Tensor  = features[0]
+image_a_one_dim = torch.squeeze(image_a)
+print(image_a_one_dim.shape)
+
+plt.figure()
+plt.title(labels_map[labels[0].item()])
+plt.imshow(image_a_one_dim)
+plt.show()
+
+
 # 2. 训练循环 (假设我们训练 5 个周期 Epoch)
-num_epochs = 5
-for epoch in range(num_epochs):
-
-    print(f"--- 开始第 {epoch + 1} 个周期 ---")
-
-    # 3. 关键区别在这里！
-    #    这个 for 循环会 *一直* 运行，直到遍历完 train_loader 里的 *所有* 批次
-    #    (60,000 张图 / 64 = 938 个批次)
-    for batch_idx, (batch_features, batch_labels) in enumerate(train_loader):
-
-        # 在这里执行训练：
-        # 1. model(batch_features)  # 喂给模型
-        # 2. loss = ...             # 计算损失
-        # 3. loss.backward()        # 反向传播
-        # 4. optimizer.step()       # 更新权重
-
-        if batch_idx % 100 == 0:
-            print(f"  已处理 {batch_idx * 64} / 60000 张图片...")
-
-    print(f"--- 第 {epoch + 1} 个周期结束 ---")
+# num_epochs = 5
+# for epoch in range(num_epochs):
+#
+#     print(f"--- 开始第 {epoch + 1} 个周期 ---")
+#
+#     # 3. 关键区别在这里！
+#     #    这个 for 循环会 *一直* 运行，直到遍历完 train_loader 里的 *所有* 批次
+#     #    (60,000 张图 / 64 = 938 个批次)
+#     for batch_idx, (batch_features, batch_labels) in enumerate(train_loader):
+#         # print(f'Batch {batch_idx + 1}: ')
+#         # print(f'Features: {batch_features}')
+#         # print(f'Labels: {batch_labels}')
+#
+#         # 在这里执行训练：
+#         # 1. model(batch_features)  # 喂给模型
+#         # 2. loss = ...             # 计算损失
+#         # 3. loss.backward()        # 反向传播
+#         # 4. optimizer.step()       # 更新权重
+#
+#         if batch_idx % 100 == 0:
+#             print(f"  已处理 {batch_idx * 64} / 60000 张图片...")
+#             print(batch_features[0].shape)
+#
+#     print(f"--- 第 {epoch + 1} 个周期结束 ---")
