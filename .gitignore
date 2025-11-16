@@ -31,3 +31,6 @@ htmlcov/
 # 忽略日志文件和本地环境变量
 *.log
 .env
+
+data
+matplotlib_demo/test_data
